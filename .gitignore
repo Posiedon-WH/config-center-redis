@@ -1,0 +1,3 @@
+# Project exclude paths
+/config-center-redis-spring-boot-autoconfigure/target/
+/config-center-redis-spring-boot-starter/target/

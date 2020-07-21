@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.posiedon.wh.starter.RedisAutoConfigure
+com.posiedon.wh.starter.RedisAutoConfigure,\
+com.posiedon.wh.starter.ListenerAutoConfiguration

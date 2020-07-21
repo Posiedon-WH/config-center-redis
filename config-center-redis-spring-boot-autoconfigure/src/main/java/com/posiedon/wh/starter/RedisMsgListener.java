@@ -6,9 +6,8 @@ import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Component;
 
-//@Component
+
 public class RedisMsgListener implements MessageListener {
-//    @Autowired
     private final RefreshConfig refreshConfig;
 
     public RedisMsgListener(RefreshConfig refreshConfig) {

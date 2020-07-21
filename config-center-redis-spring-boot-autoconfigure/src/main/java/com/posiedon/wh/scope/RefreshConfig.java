@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-//@Component
 public class RefreshConfig implements ApplicationContextAware {
 
     @Autowired
@@ -77,7 +76,6 @@ public class RefreshConfig implements ApplicationContextAware {
         }
 
         Map properties = redisTemplate.opsForHash().entries(redisConfigKey);
-
         if (properties.isEmpty()) return;
 
         MutablePropertySources propertySources = applicationContext.getEnvironment().getPropertySources();
@@ -143,5 +141,9 @@ public class RefreshConfig implements ApplicationContextAware {
         }
 
         return key;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
     }
 }

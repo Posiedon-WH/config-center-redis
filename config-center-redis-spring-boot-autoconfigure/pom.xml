@@ -6,11 +6,11 @@
 
   <groupId>com.posiedon.wh</groupId>
   <artifactId>config-center-redis-spring-boot-autoconfigure</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 
   <name>config-center-redis-spring-boot-autoconfigure</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://github.com/Posiedon-WH/config-center-redis</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

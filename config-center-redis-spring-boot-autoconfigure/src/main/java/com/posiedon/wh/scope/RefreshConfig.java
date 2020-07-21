@@ -1,5 +1,7 @@
 package com.posiedon.wh.scope;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +22,23 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 核心类：
+ *
+ *  1.从redis加载配置
+ *  2.更新应用配置数据
+ *
+ *  <p>
+ *  Enviroment propertySource 更新
+ *  '@Value' 注解配置数据更新,@Value需要在类上加@Scope("RefreshConfig")
+ *  </p>
+ *
+ * @Author: posiedon.wh
+ *
+ */
 public class RefreshConfig implements ApplicationContextAware {
+
+    private final Log logger= LogFactory.getLog(RefreshConfig.class);
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
@@ -70,12 +88,19 @@ public class RefreshConfig implements ApplicationContextAware {
     private void refreshEnv() {
         if (!enable) return;
 
+        logger.info("start to refresh config from redis.");
+
         //创建sourceProperty
         if (!checkExistRedisSpringProperty()) {
             createRedisSpringProperty();
         }
+        Map properties = null;
+        try {
+            properties = redisTemplate.opsForHash().entries(redisConfigKey);
+        } catch (Exception e) {
+            logger.error("load config from redis fail,reason:"+e.getMessage());
+        }
 
-        Map properties = redisTemplate.opsForHash().entries(redisConfigKey);
         if (properties.isEmpty()) return;
 
         MutablePropertySources propertySources = applicationContext.getEnvironment().getPropertySources();

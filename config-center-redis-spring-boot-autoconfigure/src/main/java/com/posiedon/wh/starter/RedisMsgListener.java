@@ -16,7 +16,6 @@ public class RedisMsgListener implements MessageListener {
 
     @Override
     public void onMessage(Message message, byte[] pattern) {
-        System.out.println("===refresh config from redis===");
         refreshConfig.refresh();
     }
 }

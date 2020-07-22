@@ -168,7 +168,4 @@ public class RefreshConfig implements ApplicationContextAware {
         return key;
     }
 
-    public Environment getEnvironment() {
-        return environment;
-    }
 }
